@@ -1,6 +1,9 @@
 package com.bku.appbooking;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,13 +36,22 @@ import java.util.Iterator;
 public class HomeFragment extends Fragment {
     public ListProductAdapter listProductAdapter;
     public static ArrayList<Product> product_list;
+
     @Override
     public void onActivityCreated(Bundle saveInstanceState){
         super.onActivityCreated(saveInstanceState);
-        utils.getJsonFromUrl(getContext(), "");
-        product_list = utils.product;
-        GridView gridView = (GridView) getView().findViewById(R.id.gridview);
-        listProductAdapter = new ListProductAdapter(getContext(), product_list);
+    }
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view  = inflater.inflate(R.layout.fragment_home, container, false);
+        setGridView(view);
+        return view;
+    }
+
+    private void setGridView(View view){
+        GridView gridView = (GridView) view.findViewById(R.id.gridview);
+        listProductAdapter = new ListProductAdapter(getContext(), utils.product);
         gridView.setAdapter(listProductAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,12 +62,5 @@ public class HomeFragment extends Fragment {
                 listProductAdapter.notifyDataSetChanged();
             }
         });
-    }
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view  = inflater.inflate(R.layout.fragment_home, container, false);
-
-        return view;
     }
 }

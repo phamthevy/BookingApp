@@ -1,17 +1,21 @@
 package com.bku.appbooking;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText txEmail, txPassword;
     Button btLogin;
+//    MyAsyncTask myAsyncTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +44,11 @@ public class LoginActivity extends AppCompatActivity {
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
+
         if (true){  //TODO: gui den server- tra ve true-false
-            Intent intent = new Intent(this, BookingActivity.class);
+//            myAsyncTask = new MyAsyncTask(this);
+//            myAsyncTask.execute();
+            Intent intent = new Intent(LoginActivity.this, BookingActivity.class);
             startActivity(intent);
         }
     }
@@ -58,4 +65,36 @@ public class LoginActivity extends AppCompatActivity {
         txPassword = (EditText) findViewById(R.id.txPassword);
         btLogin = (Button) findViewById(R.id.btLogin);
     }
+
+//    class MyAsyncTask extends AsyncTask<Activity, Integer, Void> {
+//
+//        Activity contextParent;
+//
+//
+//        public MyAsyncTask(Activity contextParent) {
+//            this.contextParent = contextParent;
+//        }
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Activity... params) {
+//            utils.getJsonFromUrl(contextParent, "");
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(Integer... values) {
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            super.onPostExecute(aVoid);
+//            Toast.makeText(contextParent, "Start Booking activity", Toast.LENGTH_SHORT).show();
+//
+//        }
+//    }
 }

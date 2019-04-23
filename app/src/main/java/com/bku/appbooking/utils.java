@@ -1,7 +1,9 @@
 package com.bku.appbooking;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -30,7 +32,6 @@ public class utils {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(context, "Some error occurred!!", Toast.LENGTH_SHORT).show();
-//                dialog.dismiss();
             }
         });
 
